@@ -1,6 +1,7 @@
 import speech_recognition as sr
 import os
 from io import BytesIO
+import openai
 
 # obtain audio from the microphone
 r = sr.Recognizer()
