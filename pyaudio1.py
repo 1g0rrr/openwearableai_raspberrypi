@@ -3,17 +3,17 @@
 import wave
 import sys
 
-import pyaudio
+import pyaudio1
 
 
 CHUNK = 1024
-FORMAT = pyaudio.paInt16
+FORMAT = pyaudio1.paInt16
 CHANNELS = 1 if sys.platform == 'darwin' else 2
 RATE = 44100
 RECORD_SECONDS = 5
 
 with wave.open('output.wav', 'wb') as wf:
-    p = pyaudio.PyAudio()
+    p = pyaudio1.PyAudio()
     wf.setnchannels(CHANNELS)
     wf.setsampwidth(p.get_sample_size(FORMAT))
     wf.setframerate(RATE)
