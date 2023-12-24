@@ -1,4 +1,6 @@
 import speech_recognition as sr
+import os
+from io import BytesIO
 
 # obtain audio from the microphone
 r = sr.Recognizer()
@@ -9,8 +11,16 @@ with sr.Microphone() as source:
 
 
 # recognize speech using Whisper API
-OPENAI_API_KEY = "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"
-try:
-    print(f"Whisper API thinks you said {r.recognize_whisper_api(audio, api_key=OPENAI_API_KEY)}")
-except sr.RequestError as e:
-    print("Could not request results from Whisper API")
+OPENAI_API_KEY = "--"
+
+    
+wav_data = BytesIO(audio.get_wav_data())
+wav_data.name = "SpeechRecognition_audio.wav"
+
+transcript = openai.audio.transcriptions.create(model="whisper-1", file=wav_data, api_key=OPENAI_API_KEY)
+print(transcript["text"])
+
+# try:
+#     print(f"Whisper API thinks you said {r.recognize_whisper_api(audio, api_key=OPENAI_API_KEY)}")
+# except sr.RequestError as e:
+#     print("Could not request results from Whisper API")
