@@ -19,7 +19,7 @@ client = OpenAI(api_key=OPENAI_API_KEY)
 wav_data = BytesIO(audio.get_wav_data())
 wav_data.name = "SpeechRecognition_audio.wav"
 
-transcript = client.audio.transcriptions.create(model="whisper-1", file=wav_data, api_key=OPENAI_API_KEY)
+transcript = client.audio.transcriptions.create(model="whisper-1", file=wav_data)
 print(transcript["text"])
 
 # try:
